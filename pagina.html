@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Grano De Oro</title>
+    <style>
+        body {
+            background-color: #c00; /* Rojo intenso */
+            color: #fff; /* Blanco */
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #800; /* Rojo más oscuro */
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5em 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        section {
+            background-color: #fff; /* Blanco */
+            color: #000; /* Negro */
+            padding: 2em;
+            margin-bottom: 2em;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .producto {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        .producto img {
+            width: 100px;
+            height: 100px;
+            margin-right: 1em;
+        }
+
+        footer {
+            background-color: #800; /* Rojo más oscuro */
+            padding: 1em 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #carrito {
+            margin-top: 2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>El Grano De Oro</h1>
+	<img src="logo.png">
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Productos</a>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Productos</h2>
+            <div class="producto">
+                <img src="img/cafe-colombia.jpg" alt="Café de Colombia">
+                <h3>Café de grano entero de Colombia</h3>
+                <p>Cuerpo medio, notas de caramelo y chocolate.</p>
+                <p>Precio: $10.00</p>
+                <button onclick="agregarAlCarrito('Café de Colombia', 10)">Agregar al Carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img/cafe-etiopia.jpg" alt="Café de Etiopía">
+                <h3>Café de grano entero de Etiopía</h3>
+                <p>Ligero y floral, notas de jazmín y cítricos.</p>
+                <p>Precio: $12.00</p>
+                <button onclick="agregarAlCarrito('Café de Etiopía', 12)">Agregar al Carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img/cafe-brasil.jpg" alt="Café de Brasil">
+                <h3>Café molido de Brasil</h3>
+                <p>Cuerpo completo, notas de chocolate amargo y nueces.</p>
+                <p>Precio: $11.00</p>
+                <button onclick="agregarAlCarrito('Café de Brasil', 11)">Agregar al Carrito</button>
+            </div>
+            <div class="producto">
+                <img src="img/cafe-mexico.jpg" alt="Café de México">
+                <h3>Café descafeinado de México</h3>
+                <p>Suave y dulce, notas de vainilla y caramelo.</p>
+                <p>Precio: $13.00</p>
+                <button onclick="agregarAlCarrito('Café de México', 13)">Agregar al Carrito</button>
+            </div>
+        </section>
+
+        <section id="carrito">
+            <h2>Carrito de Compras</h2>
+            <div id="productos-carrito"></div>
+            <p id="total">Total: $0.00</p>
+            <button onclick="finalizarCompra()">Finalizar Compra</button>
+        </section>
+
+        <section>
+            <h2>Sobre Nosotros</h2>
+            <p>Somos una empresa dedicada a ofrecer café orgánico de alta calidad, con un compromiso con el medio ambiente y la sostenibilidad.</p>
+            <p>Nuestra misión es...</p>
+            <p>Nuestra visión es...</p>
+            <p>Nuestros valores son...</p>
+        </section>
+
+        <section>
+            <h2>Contacto</h2>
+            <p>Dirección: Tu dirección</p>
+            <p>Teléfono: Tu teléfono</p>
+            <p>Correo electrónico: Tu correo electrónico</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Tu Café Orgánico</p>
+    </footer>
+
+    <script>
+        let carrito = [];
+        let total = 0;
+
+        function agregarAlCarrito(producto, precio) {
+            carrito.push({ producto, precio });
+            total += precio;
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const productosCarrito = document.getElementById('productos-carrito');
+            productosCarrito.innerHTML = '';
+            carrito.forEach(item => {
+                productosCarrito.innerHTML += `<p>${item.producto} - $${item.precio.toFixed(2)}</p>`;
+            });
+            document.getElementById('total').innerText = `Total: $${total.toFixed(2)}`;
+        }
+
+        function finalizarCompra() {
+            alert('Gracias por tu compra!');
+            carrito = [];
+            total = 0;
+            actualizarCarrito();
+        }
+    </script>
+</body>
+</html>
+
